@@ -1,0 +1,16 @@
+$ npm install -g npm
+$ rm -rf node_modules
+$ npm cache clean
+$ npm install -g @aws-amplify/cli
+
+npm install -g @aws-amplify/cli@9.1.0
+npm 
+yarn global upgrade -g @aws-amplify/cli@9.1.0
+
+yarn global upgrade @aws-amplify/cli@1.11
+
+
+amplify unistall
+
+
+

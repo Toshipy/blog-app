@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "appsyncblogapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/toshipy/Documents/Portfolio/blog-app/amplify/backend/api/appsyncblogapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-12-16T09:23:54.414Z",
+      "keyDescription": "da2-yqtuwr6wsrgnlgdyftg2mu2vwy"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}
