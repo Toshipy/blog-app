@@ -4,13 +4,8 @@ import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listPosts } from '../src/graphql/queries';
 
-// type MyComponentProps = {
-//   children: React.ReactNode;
-// };
 
 
-// const Home: React.FC = () => {
-// const Home: React.FC<MyComponentProps> = () => {
 const Home: NextPage = () => {
   const [posts, setPosts] = useState([]);
 
