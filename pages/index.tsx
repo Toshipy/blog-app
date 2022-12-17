@@ -29,24 +29,13 @@ const Home: NextPage = () => {
 
   return (
     <>
+    <h1>My Posts</h1>
       {
         posts.map((post: any, index: any) => 
             <p key={index} >{post.content}</p>
         )
       }
     </>
-  
-    // <div>
-    //   <h1>My Posts</h1>
-      
-    //   {
-    //     posts.map((post: any, index) => {
-    //       <li key={index} className='p-4'>
-    //         <p>{post.content}</p>
-    //       </li>
-    //     })
-    //   }
-    // </div>
     
   );
 }
