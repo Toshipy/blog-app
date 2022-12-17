@@ -3,18 +3,33 @@
     "appsyncblogapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "appsyncblogapp4218a1dd",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-12-16T09:23:54.414Z",
+              "apiKeyExpirationDate": "2023-12-17T06:12:05.489Z",
               "description": "da2-yqtuwr6wsrgnlgdyftg2mu2vwy"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authappsyncblogapp4218a1dd"
+              }
+            }
+          ]
         }
       }
     }
