@@ -15,7 +15,8 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.4",
     "react-simplemde-editor": "^5.2.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

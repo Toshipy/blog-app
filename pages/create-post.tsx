@@ -3,10 +3,13 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useState, useRef } from 'react';
 import { API } from 'aws-amplify';
 import { useRouter } from 'next/router';
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
+// import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid'
 import { createPost } from '../src/graphql/mutations';
 import type { NextPage } from 'next'
-import TextareaComp from './components/TextareaComp';
+
+
 
 // import SimpleMDE from "react-simplemde-editor";
 // import dynamic from "next/dynamic";
@@ -19,6 +22,9 @@ type Post = {
   id: any;
 }
 
+const id= uuidv4();
+console.log(`uuidは${id}`); 
+console.log(`[uuid]は${[id]}`);
 
 const initialState = { title: "", content: "",id: ""};
 // const initialState = { title: "", content: ""};
@@ -37,18 +43,25 @@ const CreatePost: NextPage = () => {
     }))
   }
 
+
   async function createNewPost() {
     if(!title || !content) return;
-    const id = uuid;
+    // const id= uuidv4();
     post.id = id;
 
     await API.graphql({
       query: createPost,
       variables: {input: post},
       authMode: "AMAZON_COGNITO_USER_POOLS"
-    })
-    // router.push(`/post/${id}`)
+    });
+
+    router.push(`/posts/${id}`)
   }
+
+  // function console(){
+  //   // console.log(uuid);
+  //   return uuid;
+  // }
 
   return (
     <div className="text-3xl font-semibold tracking-wid mt-6">
@@ -77,6 +90,14 @@ const CreatePost: NextPage = () => {
       >
         Create Post
       </button>
+
+      {/* <button 
+        type="button" 
+        className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg" 
+        onClick={console}
+      >
+        UUID
+      </button> */}
     </div> 
   )
 }
