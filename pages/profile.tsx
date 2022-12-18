@@ -1,7 +1,9 @@
 import React from 'react'
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
+import type { NextPage } from 'next'
+
 
 type User = {
   username: string;
@@ -9,7 +11,7 @@ type User = {
 }
 
 
-function Profile() {
+const Profile: NextPage = () => {
   const [user,setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -20,7 +22,16 @@ function Profile() {
     const user = await Auth.currentAuthenticatedUser()
     setUser(user);
   }
-  if (!user) return null
+
+  async function signOut() {
+    try {
+        await Auth.signOut();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+  }
+
+  if (!user) return null;
   return (
     <div className="ml-4 mr-4">
       <h1 className="text-3xl font-semibold tracking-wide mt-6">
@@ -33,8 +44,10 @@ function Profile() {
       <p className="text-sm text-gray-500 mb-6">
         Email: {user.attributes.email}
       </p>
-      <AmplifySignOut className="inline-flex items-center px-6 py-2 text-white font-medium rounded-md mx-2"/>
+      {/* <AmplifySignOut className="inline-flex items-center px-6 py-2 text-white font-medium rounded-md mx-2"/> */}
+      <button onClick={signOut}>サインアウト</button>
     </div>
   )
 }
+// export default (Profile);
 export default withAuthenticator(Profile);
