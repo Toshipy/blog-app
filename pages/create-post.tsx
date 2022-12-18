@@ -23,8 +23,8 @@ type Post = {
 }
 
 const id= uuidv4();
-console.log(`uuidは${id}`); 
-console.log(`[uuid]は${[id]}`);
+// console.log(`uuidは${id}`); 
+// console.log(`[uuid]は${[id]}`);
 
 const initialState = { title: "", content: "",id: ""};
 // const initialState = { title: "", content: ""};
