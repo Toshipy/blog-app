@@ -9,8 +9,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { createPost } from '../src/graphql/mutations';
 import type { NextPage } from 'next'
 
-
-
 // import SimpleMDE from "react-simplemde-editor";
 // import dynamic from "next/dynamic";
 // const SimpleMDE = dynamic(() => import("react-simplemde-editor"),  { ssr: false});

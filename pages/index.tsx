@@ -33,7 +33,7 @@ const Home: NextPage = () => {
               <h2 
                 className="text-xl font-semibold"
                 key={index}>
-                  {post.content}
+                  {post.title}
               </h2>
               <p
                 className="text-gray-500 mt-2">

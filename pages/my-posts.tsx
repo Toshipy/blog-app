@@ -10,12 +10,12 @@ export default function MyPosts() {
   useEffect(() => {
     fetchPosts();
   }, []);
-  
+
   async function fetchPosts() {
     // const { username } = await Auth.currentAuthenticatedUser();
     const user = await Auth.currentAuthenticatedUser()
     const username = `${user.attributes.sub}::${user.username}`
-    const postData = await API.graphql({
+    const postData: any = await API.graphql({
       query: postsByUsername,
       variables: { username },
     });
@@ -24,8 +24,8 @@ export default function MyPosts() {
     const { items } = postData.data.postsByUsername;
 
     //Fetch images from S3 for posts that contain a cover image
-    const postsWithImages = await Promise.all(
-      items.map(async (post) => {
+    const postsWithImages: any= await Promise.all(
+      items.map(async (post: any) => {
         if (post.coverImage) {
           post.coverImage = await Storage.get(post.coverImage);
         }
@@ -35,7 +35,7 @@ export default function MyPosts() {
     setPosts(postsWithImages);
     //setPosts(postData.data.postsByUsername.items);
   }
-  async function deletePost(id) {
+  async function deletePost(id: string) {
     await API.graphql({
       query: deletePostMutation,
       variables: { input: { id } },
@@ -46,7 +46,7 @@ export default function MyPosts() {
 
   return (
     <div>
-      {posts.map((post, index) => (
+      {posts.map((post: any, index: any)=> (
         <div
           key={index}
           className='py-8 px-8 max-w-xxl mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-1 sm:flex 
@@ -82,14 +82,14 @@ export default function MyPosts() {
     hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
     focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
               >
-                <Link href={`/posts/${post.id}`}>View Post</Link>
+                <Link href={`/posts/${post.id}`}>投稿を見る</Link>
               </p>
 
               <button
                 className='text-sm mr-4 text-red-500'
                 onClick={() => deletePost(post.id)}
               >
-                Delete Post
+                投稿を削除する
               </button>
             </div>
           </div>
