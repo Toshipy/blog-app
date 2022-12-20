@@ -13,16 +13,18 @@ type Post = {
   title: string;
   content: string;
   id: any;
+  coverImage: any;
+  name: any;
 }
 
-const initialState = { title: "", content: "",id: ""};
+const initialState: any = { title: "", content: "",id: ""};
 
 function EditPost (){
   // const [post, setPost] = useState<Post>(null);
   const [post, setPost] = useState<Post>(initialState);
-  const [coverImage, setCoverImage] = useState(null);
-  const [localImage, setLocalImage] = useState(null);
-  const fileInput = useRef();
+  const [coverImage, setCoverImage] = useState<any | null>(null);
+  const [localImage, setLocalImage] = useState<any | null>(null);
+  const fileInput: any = useRef();
   const router = useRouter();
   const { id } = router.query;
 
@@ -42,8 +44,8 @@ function EditPost (){
   }, [id])
 
   if(!post) return null;
-  async function updateCoverImage(coverImage) {
-    const imageKey = await Storage.get(coverImage);
+  async function updateCoverImage(coverImage: any) {
+    const imageKey: any= await Storage.get(coverImage);
       setCoverImage(imageKey);
   }
 
@@ -51,8 +53,8 @@ function EditPost (){
     fileInput.current.click();
   }
 
-  function handleChange(e) {
-    const fileUpload = e.target.files[0];
+  function handleChange(e: any) {
+    const fileUpload: any = e.target.files[0];
     if(!fileUpload) return;
     setCoverImage(fileUpload);
     setLocalImage(URL.createObjectURL(fileUpload));
@@ -68,7 +70,7 @@ function EditPost (){
   const { title, content} = post;
   async function updateCurrentPost() {
     if(!title || !content) return;
-    const postUpdated = {
+    const postUpdated: any = {
       id,
       content,
       title
