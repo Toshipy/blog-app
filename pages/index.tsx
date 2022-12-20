@@ -1,86 +1,85 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import { ReactNode } from 'react';
+import { useState, useEffect } from 'react';
+import { API, Storage } from 'aws-amplify';
+import { listPosts } from '../src/graphql/queries';
+import Link from 'next/link';
+
+
 
 const Home: NextPage = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetchPosts();
+  },[])
+
+  async function fetchPosts() {
+    const postData: any = await API.graphql({
+      query: listPosts
+    });
+    const { items } = postData.data.listPosts;
+    const postWithImages: any = await Promise.all(
+      items.map(async (post: any) => {
+        if (post.coverImage) {
+          post.coverImage = await Storage.get(post.coverImage);
+        }
+        return post
+      })
+    )
+    setPosts(postWithImages);
+  }
+
+  // console.log(posts);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+    <div>
+    <h1 className='text-3xl font-semibold tracking-wide mt-6 mb-8'>投稿一覧</h1>
+      {
+        posts.map((post: any, index: any) => 
+          <Link key={index} href={`/posts/${post.id}`}>
+            <div className="cursor-pointer border-b border-gray-300 mt-8 pb-4">
+              {
+                post.coverImage && (
+                  <img src={post.coverImage} className="w-36 h-36 bg-center rounded-full sm:mx-0 sm:shrink-0" />
+                )
+              }
+              <div className="cursor-pointer mt-2">
+                <h2 
+                  className="text-xl font-semibold"
+                  key={index}>
+                    {post.title}
+                </h2>
+                <p
+                  className="text-gray-500 mt-2">
+                    投稿した人：{post.username}
+                </p>
+                {
+                  post.comments.items.length > 0 &&
+                  post.comments.items.map((comment: any,index: any)=> (
+                    <div 
+                      key={index}
+                      className="py-8 px-8 max-w-xl mx-auto bg-white rounded-xl 
+                      shadow-lg space-y-2 sm:py-1 sm:flex 
+                      my-6
+                      mx-12
+                      sm:items-center sm:space-y-0 sm:space-x-6 mb-2"
+                    > 
+                      <div>
+                        <p className="text-gray-500 mt-2">{comment.message}</p> 
+                        <p className="text-gray-200 mt-1">{comment.createdBy}</p> 
+                      </div>
+                  </div>
+                  ))
+                }
+              </div>
+            </div>
+          </Link>
+        )
+      }
     </div>
-  )
+    
+  );
 }
 
 export default Home

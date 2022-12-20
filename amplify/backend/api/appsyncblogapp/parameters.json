@@ -2,5 +2,11 @@
   "AppSyncApiName": "appsyncblogapp",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-12-16T08:44:01.632Z"
+  "AuthModeLastUpdated": "2022-12-17T06:12:30.538Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authappsyncblogapp4218a1dd",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
