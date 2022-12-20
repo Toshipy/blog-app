@@ -1,15 +1,29 @@
-import React from 'react'
-import { API } from 'aws-amplify';
+import React, { useEffect } from 'react'
+import { API, Storage } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import { listPosts, getPost } from '../../src/graphql/queries';
 import '../../configureAmplify';
 import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
 
 
 
 
 
 export default function Post({ post }:{post: any}) {  
+  const [coverImage, setCoverImage] = useState(null);
+
+  useEffect(() => {
+    updateCoverImage();
+  },[]);
+
+  async function updateCoverImage() {
+    if (post.coverImage) {
+      const imageKey: any = await Storage.get(post.coverImage)
+      setCoverImage(imageKey);
+    }
+  }
+
     const router = useRouter();
     if (router.isFallback) {
       return <div>Loading...</div>
@@ -19,6 +33,12 @@ export default function Post({ post }:{post: any}) {
         <h1 className="text-5xl mt-4 font-semibold tracing-wide">
           {post.title}
         </h1>
+        {
+          coverImage && (
+            <img src={coverImage} className="mt4" />
+          )
+        }
+
         <p className="text-sm  font-light my-4">ユーザー名：{post.username}</p>
         <div className="mt-8">
           <p className="text-sm  font-light my-4">内容：{post.content}</p>

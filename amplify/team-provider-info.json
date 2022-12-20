@@ -26,7 +26,8 @@
     },
     "categories": {
       "auth": {
-        "appsyncblogapp4218a1dd": {}
+        "appsyncblogapp4218a1dd": {},
+        "true": {}
       }
     }
   }

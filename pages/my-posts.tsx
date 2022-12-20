@@ -20,21 +20,20 @@ export default function MyPosts() {
       variables: { username },
     });
 
-    //to get image thumbnails
     const { items } = postData.data.postsByUsername;
-
-    //Fetch images from S3 for posts that contain a cover image
-    const postsWithImages: any= await Promise.all(
+    const postWithImages: any = await Promise.all(
       items.map(async (post: any) => {
         if (post.coverImage) {
           post.coverImage = await Storage.get(post.coverImage);
         }
         return post;
       })
-    );
-    setPosts(postsWithImages);
-    //setPosts(postData.data.postsByUsername.items);
+    )
+      // setPosts(postData.data.postsByUsername.items)
+      setPosts(postWithImages);
+    // setPosts(postData.data.postsByUsername.items);
   }
+  
   async function deletePost(id: string) {
     await API.graphql({
       query: deletePostMutation,
