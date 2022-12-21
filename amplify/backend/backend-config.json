@@ -1,12 +1,12 @@
 {
   "api": {
-    "appsyncblogapp": {
+    "blogapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "appsyncblogapp4218a1dd",
+          "resourceName": "blogapp4d351350",
           "attributes": [
             "UserPoolId"
           ]
@@ -18,15 +18,15 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-12-17T06:12:05.489Z",
-              "description": "da2-yqtuwr6wsrgnlgdyftg2mu2vwy"
+              "apiKeyExpirationDate": "2023-12-21T05:56:14.119Z",
+              "description": "public api key"
             }
           },
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authappsyncblogapp4218a1dd"
+                "userPoolId": "authblogapp4d351350"
               }
             }
           ]
@@ -35,7 +35,7 @@
     }
   },
   "auth": {
-    "appsyncblogapp4218a1dd": {
+    "blogapp4d351350": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -58,6 +58,22 @@
           "EMAIL"
         ]
       }
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "blogapp4d351350",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
     }
   },
   "storage": {

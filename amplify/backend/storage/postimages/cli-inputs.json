@@ -1,7 +1,7 @@
 {
   "resourceName": "postimages",
-  "policyUUID": "d821f1f3",
-  "bucketName": "appsyncblogappe6432b73043d43569ff0cba9ce55f6c8",
+  "policyUUID": "057e8b45",
+  "bucketName": "blogappa7f8c4a02cf245be9d7690b0f100ac59",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"

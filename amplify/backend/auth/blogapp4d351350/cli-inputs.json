@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "appsyncblogapp4218a1dd_identitypool_4218a1dd",
+    "identityPoolName": "blogapp4d351350_identitypool_4d351350",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "appsyn4218a1dd",
-    "userPoolName": "appsyncblogapp4218a1dd_userpool_4218a1dd",
+    "resourceNameTruncated": "blogap4d351350",
+    "userPoolName": "blogapp4d351350_userpool_4d351350",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,13 +31,15 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "appsyn4218a1dd_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "blogap4d351350_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "4218a1dd",
-    "resourceName": "appsyncblogapp4218a1dd",
+    "sharedId": "4d351350",
+    "resourceName": "blogapp4d351350",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+      "blogapp4d351350"
+    ],
     "serviceName": "Cognito",
     "useEnabledMfas": false,
     "authRoleArn": {

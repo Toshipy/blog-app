@@ -1,3 +1,4 @@
+import React from 'react';
 import '../styles/globals.css'
 import '../configureAmplify';
 import type { AppProps } from 'next/app';
@@ -6,10 +7,9 @@ import Navbar from './components/navbar';
 import { Auth, I18n } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
 import config from '../src/aws-exports';
-// import '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
-import React from 'react';
 import Amplify from '@aws-amplify/core'
 // import Amplify from 'aws-amplify';
 
@@ -18,14 +18,12 @@ import Amplify from '@aws-amplify/core'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // <AmplifyAuthenticator>
       <div>
         <div>
           <Navbar />
         </div>
         <Component {...pageProps} />
       </div>
-    /* </AmplifyAuthenticator> */
   )
 }
 
