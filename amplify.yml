@@ -10,7 +10,7 @@ frontend:
     preBuild:
       commands:
         - node -v
-        - npm install 
+        - npm install 14.5.0
         - node -v
         - npm ci
 
