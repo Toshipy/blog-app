@@ -97,7 +97,7 @@ function EditPost (){
       </h1>
       {
         coverImage && (
-          <img src={localImage ? localImage : coverImage} className="mt-4" />
+          <img src={localImage ? localImage : coverImage}   width={500} height={500} className="max-w-xs h-auto rounded-lg mt-4" />
         )
       }
       {/* <input

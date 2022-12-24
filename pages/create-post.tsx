@@ -86,8 +86,8 @@ const CreatePost: NextPage = () => {
   // }
 
   return (
-    <div className="text-2xl font-semibold tracking-wide mt-6 ">
-      <p className="ml-10">投稿を作成</p>
+    <div className="mx-10 text-2xl font-semibold tracking-wide mt-6 ">
+      <p className="">投稿を作成</p>
         {/* <input 
         onChange={onChange}
         name="title"
@@ -100,8 +100,8 @@ const CreatePost: NextPage = () => {
       name="title"
       placeholder="タイトル"
       value={post.title}
-      className="text-xl mt-5 ml-10 w-100 bg-white bg-clip-padding
-      border border-solid border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      className="text-2xl mt-5 w-full bg-white bg-clip-padding
+      border border-solid border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" 
       />
 
 
@@ -120,7 +120,7 @@ const CreatePost: NextPage = () => {
         name="content"
         placeholder="テキスト"
         className="form-control
-          ml-10
+          max-h-full	
           my-5
           block
           w-full
@@ -162,7 +162,7 @@ const CreatePost: NextPage = () => {
       <button 
         type="button" 
         className="block w-200 text-sm text-slate-500
-        ml-10 mr-4 py-2 px-4
+        mr-4 py-2 px-4
         rounded-md border-0
         text-sm font-semibold
         bg-violet-50 text-violet-700
@@ -181,7 +181,7 @@ const CreatePost: NextPage = () => {
         // text-3xl font-semibold
         // bg-violet-50 text-violet-700
         // hover:bg-violet-100"
-        className="ml-10 mr-4 py-2 px-4 mt-10 block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
+        className=" mr-4 py-2 px-4 mt-10 block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
         onClick={createNewPost}
       >
         投稿する

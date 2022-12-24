@@ -58,7 +58,7 @@ export default function Post({ post }:{post: any}) {
       } catch (error) {
         console.log(error);
       }
-      router.push("/my-posts");
+      router.push("/");
     }
 
 
@@ -86,7 +86,7 @@ export default function Post({ post }:{post: any}) {
     }
 
     return ( 
-      <div>
+      <div className="mx-4 my-2 ">
         <h1 className="text-3xl my-4 tracing-wide">
           タイトル：{post.title}
         </h1>
@@ -96,9 +96,9 @@ export default function Post({ post }:{post: any}) {
           )
         }
 
-        <p className="text-sm  font-light my-4">投稿したユーザー：{post.username}</p>
+        <p className="text-sm  font-light my-4">{post.username}</p>
         <div className="mt-8">
-          <p className="text-sm  font-light my-4">投稿内容：{post.content}</p>
+          <p className="text-sm  font-light my-4">{post.content}</p>
           {/* <p ReactMarkDown="prose">内容：{post.content}</p> */}
         </div>
 
@@ -118,15 +118,37 @@ export default function Post({ post }:{post: any}) {
             <div
               style={{ display: showMe ? "block" : "none" }}
             >
-            <input
+              <textarea
+        value={comment.message}
+        onChange={onChange}
+        name="content"
+        placeholder="テキスト"
+        className="form-control
+          my-5
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        ></textarea>
+            {/* <input
               value={comment.message}
               onChange={onChange}
               name="content"
-            />
+            /> */}
               <button
                 onClick={createTheComment}
                 type="button"
-                className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
+                className="block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
                 // onClick={}
               >
                 保存

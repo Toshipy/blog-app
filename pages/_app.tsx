@@ -3,14 +3,12 @@ import '../styles/globals.css'
 import '../configureAmplify';
 import type { AppProps } from 'next/app';
 import Navbar from './components/navbar';
-// import { vocabularies } from '../amplify/vocabularies';
 import { Auth, I18n } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
 import config from '../src/aws-exports';
 import '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Amplify from '@aws-amplify/core'
-// import Amplify from 'aws-amplify';
 
 
 
@@ -38,6 +36,10 @@ const vocabularies = {
     'Create a new account': 'アカウントの新規登録',
     'Create account': '新規登録',
     'Email': 'メールアドレス',
+    'Enter your Username': "ユーザ名を入力",
+    'Enter your Password': "パスワードを入力",
+    'Please confirm your Password': "パスワードをもう一度入力",
+    'Enter your Email': "メールアドレスを入力",
     'Enter your code': '確認コードを入力してください',
     'Enter your password': 'パスワードを入力してください',
     'Enter your username': 'ユーザー名を入力してください',
