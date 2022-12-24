@@ -87,8 +87,8 @@ export default function Post({ post }:{post: any}) {
 
     return ( 
       <div>
-        <h1 className="text-5xl mt-4 font-semibold tracing-wide">
-          {post.title}
+        <h1 className="text-3xl my-4 tracing-wide">
+          タイトル：{post.title}
         </h1>
         {
           coverImage && (
@@ -96,9 +96,9 @@ export default function Post({ post }:{post: any}) {
           )
         }
 
-        <p className="text-sm  font-light my-4">ユーザー名：{post.username}</p>
+        <p className="text-sm  font-light my-4">投稿したユーザー：{post.username}</p>
         <div className="mt-8">
-          <p className="text-sm  font-light my-4">内容：{post.content}</p>
+          <p className="text-sm  font-light my-4">投稿内容：{post.content}</p>
           {/* <p ReactMarkDown="prose">内容：{post.content}</p> */}
         </div>
 

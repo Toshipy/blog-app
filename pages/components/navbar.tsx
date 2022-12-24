@@ -28,27 +28,29 @@ const Navbar: NextPage = () => {
     }
   }
   return (
-    <nav className="flex justify-center pt-3 pb-3 space-x-4 border-b bg-cyan-500 border-gray-300">
-      {[
-        ["ホーム", "/"],
-        ["投稿する", "/create-post"],
-        ["プロフィール", "/profile"]
-      ].map(([title, url], index) => 
-        <Link legacyBehavior href={url} key={index}>
-          <a 
-          className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slage-100 hover:text-slate-900"
-          >
-            {title}
-          </a>
-        </Link>
-      )}
-      {
-        signedUser && (
-          <Link legacyBehavior href='/my-posts'>
-            <a className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slage-100 hover:text-slate-900">My Posts</a>
-          </Link>
-        )
-      }
+    <nav className="bg-gray-800 w-screen">
+      <div className="flex items-center pl-8 h-14">
+        <div className="flex space-x-4">
+          {[
+            ["ホーム", "/"],
+            ["投稿する", "/create-post"],
+            ["プロフィール", "/profile"]
+          ].map(([title, url], index) => 
+            <Link legacyBehavior href={url} key={index}>
+              <a className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
+                {title}
+              </a>
+            </Link>
+          )}
+          {
+            signedUser && (
+              <Link legacyBehavior href='/my-posts'>
+                <a className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">あなたの投稿</a>
+              </Link>
+            )
+          }
+        </div>
+      </div>
     </nav>
   )
 }
