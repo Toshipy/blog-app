@@ -92,42 +92,92 @@ function EditPost (){
 
   return(
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
+      <h1 className="ml-10 text-3xl font-semibold tracking-wide mt-6 mb-2">
         編集する
       </h1>
       {
         coverImage && (
-          <img src={localImage ? localImage : coverImage} className="mt-4" />
+          <img src={localImage ? localImage : coverImage}   width={500} height={500} className="max-w-xs h-auto rounded-lg mt-4" />
         )
       }
-      <input
+      {/* <input
         onChange={onChange}
         name="title"
         placeholder="タイトル"
         value={post.title}
         className='border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2'
+      /> */}
+      <input 
+        onChange={onChange}
+        name="title"
+        placeholder="タイトル"
+        value={post.title}
+        className="text-xl mt-5 ml-10 w-100 bg-white bg-clip-padding
+        border border-solid border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
       />
       
-      <input
-        value={post.content}
+      <textarea
         onChange={onChange}
         name="content"
-      />
+        placeholder="テキスト"
+        className="form-control
+          ml-10
+          my-5
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          value={post.content}
+        ></textarea>
+      
+
       <input 
         type="file"
         ref={fileInput}
         className="absolute w-0 h-0"
         onChange={handleChange}
       />
-      <button
+
+      {/* <button
         className='mb-4 bg-green-600 text-white font-semibold px-8 py-2 rounded-lg'
         onClick={uploadImage}
-      >画像をアップロードする</button>
+      >画像をアップロードする</button> */}
 
-      <button
+        <button 
+        type="button" 
+        className="block w-200 text-sm text-slate-500
+        ml-10 mr-4 py-2 px-4
+        rounded-md border-0
+        text-sm font-semibold
+        bg-violet-50 text-violet-700
+        hover:bg-violet-100"
+        onClick={uploadImage}
+      >
+        画像をアップロードする
+      </button>
+
+      <button 
+        type="button"
+        className="ml-10 mr-4 py-2 px-4 mt-10 block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
+        onClick={updateCurrentPost}
+      >
+        投稿する
+      </button>
+      {/* <button
         className='ml-2 mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg'
         onClick={updateCurrentPost}
-      >投稿を更新する</button>
+      >投稿を更新する
+      </button> */}
     </div>
   )
 }

@@ -44,7 +44,7 @@ export default function MyPosts() {
   }
 
   return (
-    <div>
+    <div className="mt-5">
       {posts.map((post: any, index: any)=> (
         <div
           key={index}
@@ -53,7 +53,7 @@ export default function MyPosts() {
         >
           {post.coverImage && (
             <img
-              className='w-36 h-36 bg-contain bg-center rounded-full sm:mx-0 sm:shrink-0'
+              className='w-36 h-36 bg-contain bg-center rounded-md sm:mx-0 sm:shrink-0'
               src={post.coverImage}
             />
           )}
@@ -61,31 +61,33 @@ export default function MyPosts() {
             <div className='space-y-0.5'>
               <p className='text-lg text-black font-semibold'>{post.title}</p>
               <p className='text-slate-500 font-medium'>
-                Created on: {Moment(post.createdAt).format("ddd, MMM hh:mm a")}
+                作成日: {Moment(post.createdAt).format("YYYY年MM月DD日 HH:mm")}
               </p>
             </div>
             <div
               className='sm:py-4 sm:flex 
-        sm:items-center sm:space-y-0 sm:space-x-1'
+        sm:items-center sm:space-y-0 sm:space-x-4'
             >
-              <p
+              {/* <p
                 className='px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
     hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
     focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
-              >
-                <Link href={`/edit-post/${post.id}`}>Edit Post</Link>
+              > */}
+              <p className="block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">
+                <Link href={`/edit-post/${post.id}`}>投稿を編集する</Link>
               </p>
 
-              <p
-                className='px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
+              {/* <p
+                className='mr-5 px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
     hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
     focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
-              >
+              > */}
+              <p className="block w-200 text-lg inline-block px-6 py-2.5  text-black font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-200 active:shadow-lg transition duration-150 ease-in-out">
                 <Link href={`/posts/${post.id}`}>投稿を見る</Link>
               </p>
 
               <button
-                className='text-sm mr-4 text-red-500'
+                className='text-red-500 block w-200 text-lg inline-block px-6 py-2.5 text-black font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-200 active:shadow-lg transition duration-150 ease-in-out'
                 onClick={() => deletePost(post.id)}
               >
                 投稿を削除する

@@ -34,18 +34,18 @@ const Profile: NextPage = () => {
   if (!user) return null;
   return (
     <div className="ml-4 mr-4">
-      <h1 className="text-3xl font-semibold tracking-wide mt-6">
-        Profile
+      <h1 className="text-2xl font-semibold tracking-wide mt-6">
+        プロフィール
       </h1>
 
-      <h1 className="font-medium text-gray-500 my-2">
-        Username: {user.username}
+      <h1 className="text-gray-500 my-2">
+        ユーザー名: {user.username}
       </h1>
-      <p className="text-sm text-gray-500 mb-6">
-        Email: {user.attributes.email}
+      <p className="text-gray-500 my-2 mb-6">
+        Eメール: {user.attributes.email}
       </p>
       {/* <AmplifySignOut className="inline-flex items-center px-6 py-2 text-white font-medium rounded-md mx-2"/> */}
-      <button onClick={signOut}>サインアウト</button>
+      <button className="block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" onClick={signOut}>サインアウト</button>
     </div>
   )
 }
