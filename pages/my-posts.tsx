@@ -61,7 +61,7 @@ export default function MyPosts() {
             <div className='space-y-0.5'>
               <p className='text-lg text-black font-semibold'>{post.title}</p>
               <p className='text-slate-500 font-medium'>
-                Created on: {Moment(post.createdAt).format("ddd, MMM hh:mm a")}
+                作成日: {Moment(post.createdAt).format("YYYY年MM月DD日 HH:mm")}
               </p>
             </div>
             <div
@@ -73,7 +73,7 @@ export default function MyPosts() {
     hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
     focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
               >
-                <Link href={`/edit-post/${post.id}`}>Edit Post</Link>
+                <Link href={`/edit-post/${post.id}`}>投稿を編集する</Link>
               </p>
 
               <p

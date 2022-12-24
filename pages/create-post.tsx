@@ -87,7 +87,7 @@ const CreatePost: NextPage = () => {
 
   return (
     <div className="text-3xl font-semibold tracking-wid mt-6">
-      <p>Create new Post</p>
+      <p>投稿を作成</p>
         <input 
         onChange={onChange}
         name="title"
