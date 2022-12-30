@@ -1,5 +1,14 @@
-サイトURL：https://main.do1bnofl345o8.amplifyapp.com/
+# コメント投稿付き、ブログアプリケーション
 
+![スクリーンショット 2022-12-30 20 37 41](https://user-images.githubusercontent.com/44152472/210066389-35be7221-b340-44f9-b5b7-49e25462858c.png)
 
 
 ## 1.サイト概要
+サイトURL：https://main.do1bnofl345o8.amplifyapp.com/
+
+このサイトでは、ログイン認証をしたユーザーが、文字や写真を載せて投稿でき、投稿に対してコメントをすることができます。
+
+
+## 2.サイト概要
+
+ログイン機能をAmazon Cognitoでログイン機能を実装し
