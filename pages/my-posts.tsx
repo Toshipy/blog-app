@@ -65,23 +65,13 @@ export default function MyPosts() {
               </p>
             </div>
             <div
-              className='sm:py-4 sm:flex 
-        sm:items-center sm:space-y-0 sm:space-x-4'
+              className='sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4'
             >
-              {/* <p
-                className='px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
-    hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
-    focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
-              > */}
+
               <p className="block w-200 text-lg inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">
                 <Link href={`/edit-post/${post.id}`}>投稿を編集する</Link>
               </p>
 
-              {/* <p
-                className='mr-5 px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
-    hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
-    focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'
-              > */}
               <p className="block w-200 text-lg inline-block px-6 py-2.5  text-black font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-200 active:shadow-lg transition duration-150 ease-in-out">
                 <Link href={`/posts/${post.id}`}>投稿を見る</Link>
               </p>

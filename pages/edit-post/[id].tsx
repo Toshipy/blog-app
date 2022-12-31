@@ -9,55 +9,66 @@ import { useState, useRef } from 'react';
 import { Auth, API, Storage } from "aws-amplify";
 import { updatePost } from '../../src/graphql/mutations';
 
+
+//型定義
 type Post = {
   title: string;
   content: string;
-  id: any;
+  id: string;
   coverImage: any;
-  name: any;
+  name: string;
 }
 
-const initialState: any = { title: "", content: "",id: ""};
+const initialState: any = { title: "", content: "",id: ""}; //空の値
 
 function EditPost (){
-  // const [post, setPost] = useState<Post>(null);
-  const [post, setPost] = useState<Post>(initialState);
+  const [post, setPost] = useState<Post>(initialState); //initialState
   const [coverImage, setCoverImage] = useState<any | null>(null);
   const [localImage, setLocalImage] = useState<any | null>(null);
-  const fileInput: any = useRef();
+  const fileInput: any = useRef(); //fileInputの参照を保持する
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query; //URLからクエリパラメータを取得する
 
+  //最初のマウント時と与えられた[id]の値に変化があった場合のみに第一引数の関数を実行する。
   useEffect(() => {
     fetchPost();
+    
+    //Postデータをfetchする
     async function fetchPost() {
-      if (!id) return;
+      if (!id) return; //idが存在しない場合は何も返さない
+
       const postData: any = await API.graphql({
-        query: getPost,
-        variables: { id }
+        query: getPost, //graphql > queries.tsから[getPost]をクエリする
+        variables: { id } //[id]を変数値として
       })
-      setPost(postData.data.getPost);
-      if (postData.data.getPost.coverImage) {
+
+      setPost(postData.data.getPost);//getPostのデータで更新する
+
+      if (postData.data.getPost.coverImage) { //coverImageがあれば、updateCoverImage関数を実行する
         updateCoverImage(postData.data.getPost.coverImage);
       }
     }
   }, [id])
 
-  if(!post) return null;
+  if(!post) return null; //postのデータがなければ何も返さない
+
+  //S3からカバーイメージを取得して更新する関数
   async function updateCoverImage(coverImage: any) {
-    const imageKey: any= await Storage.get(coverImage);
-      setCoverImage(imageKey);
+    const imageKey: any= await Storage.get(coverImage); //S3 Storageから[coverImage]を取得
+      setCoverImage(imageKey); //取得した [coverImage] で更新する
   }
 
+  //画像をアップロードする関数
   async function uploadImage() {
     fileInput.current.click();
   }
 
+  //
   function handleChange(e: any) {
-    const fileUpload: any = e.target.files[0];
-    if(!fileUpload) return;
-    setCoverImage(fileUpload);
-    setLocalImage(URL.createObjectURL(fileUpload));
+    const fileUpload: any = e.target.files[0]; //fileUploadは、アップロードしたファイルのindex番号0の値
+    if(!fileUpload) return; //アップロードされたファイルがなければ何も返さない
+    setCoverImage(fileUpload); //アップロードされたファイルでcoverImageを更新
+    setLocalImage(URL.createObjectURL(fileUpload)); //ローカルイメージを、アップロードされたオブジェクトによって作成されたURLで更新する
   }
 
   function onChange(e: any) {
@@ -67,9 +78,11 @@ function EditPost (){
     }))
   }
 
-  const { title, content} = post;
+  const { title, content } = post;
+
+  //投稿を更新する
   async function updateCurrentPost() {
-    if(!title || !content) return;
+    if(!title || !content) return; //[title] or [content] がなければ何も返さない
     const postUpdated: any = {
       id,
       content,
@@ -77,17 +90,17 @@ function EditPost (){
     }
 
     if(coverImage && localImage) {
-      const fileName = `${coverImage.name}_${uuidv4()}`
+      const fileName = `${coverImage.name}_${uuidv4()}` //fileNameをuuidv4でユニークな識別子を付加する
       postUpdated.coverImage = fileName;
-      await Storage.put(fileName, coverImage);
+      await Storage.put(fileName, coverImage); //S3に[fileName], [coverImage]で更新する
     }
 
     await API.graphql({
       query: updatePost,
       variables: { input: postUpdated },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "AMAZON_COGNITO_USER_POOLS" //認証されたユーザーのみ
     })
-    router.push("/my-posts")
+    router.push("/my-posts") //my-postsにリダイレクト
   }
 
   return(
@@ -96,17 +109,11 @@ function EditPost (){
         編集する
       </h1>
       {
-        coverImage && (
+        coverImage && ( 
           <img src={localImage ? localImage : coverImage}   width={500} height={500} className="max-w-xs h-auto rounded-lg mt-4" />
         )
       }
-      {/* <input
-        onChange={onChange}
-        name="title"
-        placeholder="タイトル"
-        value={post.title}
-        className='border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2'
-      /> */}
+
       <input 
         onChange={onChange}
         name="title"
@@ -140,18 +147,12 @@ function EditPost (){
           value={post.content}
         ></textarea>
       
-
       <input 
         type="file"
         ref={fileInput}
         className="absolute w-0 h-0"
         onChange={handleChange}
       />
-
-      {/* <button
-        className='mb-4 bg-green-600 text-white font-semibold px-8 py-2 rounded-lg'
-        onClick={uploadImage}
-      >画像をアップロードする</button> */}
 
         <button 
         type="button" 
@@ -173,11 +174,6 @@ function EditPost (){
       >
         投稿する
       </button>
-      {/* <button
-        className='ml-2 mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg'
-        onClick={updateCurrentPost}
-      >投稿を更新する
-      </button> */}
     </div>
   )
 }
