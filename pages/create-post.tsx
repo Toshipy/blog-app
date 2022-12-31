@@ -9,11 +9,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { createPost } from '../src/graphql/mutations';
 import type { NextPage } from 'next'
 
-// import SimpleMDE from "react-simplemde-editor";
-// import dynamic from "next/dynamic";
-// const SimpleMDE = dynamic(() => import("react-simplemde-editor"),  { ssr: false});
-// import "easymde/dist/easymde.min.css";
-
 type Post = {
   title: string;
   content: string;
@@ -152,13 +147,6 @@ const CreatePost: NextPage = () => {
         )
       }
 
-      {/* <button 
-        type="button" 
-        className="bg-green-600 text-white font-semibold px-8 py-2 rounded-lg mr-2 ml-2"
-        onClick={uploadImage}
-      >
-        画像をアップロードする
-      </button> */}
       <button 
         type="button" 
         className="block w-200 text-sm text-slate-500
@@ -186,18 +174,8 @@ const CreatePost: NextPage = () => {
       >
         投稿する
       </button>
-
-
-      {/* <button 
-        type="button" 
-        className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg" 
-        onClick={console}
-      >
-        UUID
-      </button> */}
     </div> 
   )
 }
 
 export default withAuthenticator(CreatePost);
-// export default CreatePost;
